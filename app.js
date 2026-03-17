@@ -4,7 +4,12 @@ const app = express();
 const crearusuario = require('./vista/RutaCliente'); 
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+    origin: '*', // Permite solicitudes de cualquier origen. Considera restringirlo en producción.
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
+    credentials: true // Habilita el envío de cookies de origen cruzado
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
